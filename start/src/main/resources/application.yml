@@ -1,0 +1,58 @@
+#==============spring相关的配置================
+spring:
+  datasource:
+    type: com.cmbibank.config.DruidDataSourceWrapper
+    driverClassName: oracle.jdbc.OracleDriver
+    druid:
+      dialect: oracle
+      url: jdbc:oracle:thin:@//192.168.197.199:1521/ORCLCDB
+      username: c##ibank
+      password: ibank2021
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+  application:
+    name: db_api
+server:
+  port: 8099
+
+#==============mybatis相关的配置================
+mybatis:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  # model的包
+  type-aliases-package: com.cmbibank.dbapi.**.entity
+#  type-handlers-package: com.cmbibank.dbapi.**.database
+  configuration:
+    map-underscore-to-camel-case: true
+
+#==============配置pagehelper参数================
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+#==============多线程参数================
+task:
+  pool:
+    # 核心线程池大小
+    core-pool-size: 10
+    # 最大线程数
+    max-pool-size: 30
+    # 活跃时间
+    keep-alive-seconds: 60
+    # 队列容量
+    queue-capacity: 50
+
+
+#==============安全性相关的================
+#==============自定义参数================
